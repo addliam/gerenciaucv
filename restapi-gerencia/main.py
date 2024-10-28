@@ -30,6 +30,9 @@ def getsugerenciaia(userid: Optional[int] = None):
     if not userid:
         raise HTTPException(
             status_code=404, detail="No se proporcionó el parámetro obligatorio 'userid'.")
+    if not repository.check_user_exists(userid):
+        raise HTTPException(
+            status_code=404, detail="No existe el usuario con el 'userid' proporcionado.")
     gastos = repository.get_gasto_from_userid(userid)
     gastos_csv = csvformatter.format(gastos)
     # Consultar información personal del usuario

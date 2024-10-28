@@ -15,6 +15,19 @@ class Repository:
                                     charset='utf8mb4',
                                     cursorclass=pymysql.cursors.DictCursor)
 
+    # TODO: Verificar que el usuario proporcionado tenga información en las tablas gasto y personal
+
+    def check_user_exists(self, userid: int) -> bool:
+        self.__initiate_connection()
+        try:
+            with self.conn.cursor() as cursor:
+                sql = """SELECT u.usuario_id FROM usuario u WHERE u.usuario_id = %s"""
+                cursor.execute(sql, (userid,))
+                result = cursor.fetchone()
+            return result is not None
+        finally:
+            self.conn.close()
+
     def get_gasto_from_userid(self, userid: int, limite=50):
         self.__initiate_connection()
         try:
