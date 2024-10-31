@@ -22,7 +22,7 @@ class Respuesta(BaseModel):
 
 app = FastAPI()
 origins = [
-    "http://localhost",
+    "*",
 ]
 
 app.add_middleware(
