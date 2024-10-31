@@ -1,6 +1,7 @@
 from typing import Union
 
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from typing import Optional
 from gpt import Gpt
 from repository import Repository
@@ -20,6 +21,17 @@ class Respuesta(BaseModel):
 
 
 app = FastAPI()
+origins = [
+    "http://localhost",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 gpt = Gpt()
 repository = Repository()
 csvformatter = Csvformatter()
