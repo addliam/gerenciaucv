@@ -54,7 +54,7 @@ class Repository:
                 """
                 cursor.execute(sql, (userid,))
                 result = cursor.fetchall()
-
+                
             return result
         finally:
             self.conn.close()

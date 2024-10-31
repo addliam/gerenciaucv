@@ -1,0 +1,29 @@
+# fly.toml app configuration file generated for restapi-gerencia on 2024-10-31T10:34:32-05:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'restapi-gerencia'
+primary_region = 'scl'
+
+[build]
+
+[http_service]
+  internal_port = 80
+  force_https = true
+  auto_stop_machines = 'stop'
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ['app']
+
+[[services]]
+  internal_port = 80  # Port defined in Dockerfile
+  protocol = "tcp"
+
+  [[services.ports]]
+    port = 80  # Redirect HTTP traffic to 8000
+
+[[vm]]
+  memory = '1gb'
+  cpu_kind = 'shared'
+  cpus = 1

@@ -1,5 +1,11 @@
 # Gerencia UCV
 
+# TODO
+
+- email unique
+- persona 1:1 usuario
+- constrains db
+
 Requiere una base de datos llamada `bdgerencia`
 
 `GET /checkia`
