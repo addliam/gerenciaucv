@@ -1,0 +1,3 @@
+[submodule "gerenciaweb"]
+	path = gerenciaweb
+	url = https://github.com/addliam/gerenciaweb
